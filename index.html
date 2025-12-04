@@ -1,0 +1,138 @@
+<index.html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #222, #444);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+        }
+
+        #calcu {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px #000;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            background: #000;
+            color: #0aff9d;
+            border: 2px solid #0aff9d;
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 20px;
+            margin-top: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            background-color: #0aff9d;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0cd180;
+            cursor: pointer;
+        }
+
+        /* Botão vermelho do C */
+        .btn-clear {
+            background-color: #ff4b4b !important;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background-color: #cc3a3a !important;
+        }
+
+        /* Botão de operações */
+        .op {
+            background-color: #ffaa00 !important;
+        }
+
+        .op:hover {
+            background-color: #dd8d00 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="calcu">
+        <tr>
+            <td colspan="3"><input type="text" id="result"></td>
+            <td><input type="button" value="C" class="btn-clear" onclick="clr()"></td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="1" onclick="dis('1')"></td>
+            <td><input type="button" value="2" onclick="dis('2')"></td>
+            <td><input type="button" value="3" onclick="dis('3')"></td>
+            <td><input type="button" value="/" class="op" onclick="dis('/')"></td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="4" onclick="dis('4')"></td>
+            <td><input type="button" value="5" onclick="dis('5')"></td>
+            <td><input type="button" value="6" onclick="dis('6')"></td>
+            <td><input type="button" value="*" class="op" onclick="dis('*')"></td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="7" onclick="dis('7')"></td>
+            <td><input type="button" value="8" onclick="dis('8')"></td>
+            <td><input type="button" value="9" onclick="dis('9')"></td>
+            <td><input type="button" value="-" class="op" onclick="dis('-')"></td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="0" onclick="dis('0')"></td>
+            <td><input type="button" value="." onclick="dis('.')"></td>
+            <td><input type="button" value="=" onclick="solve()"></td>
+            <td><input type="button" value="+" class="op" onclick="dis('+')"></td>
+        </tr>
+    </table>
+
+    <script>
+        function dis(val) {
+            document.getElementById("result").value += val;
+        }
+
+        function solve() {
+            try {
+                let x = document.getElementById("result").value;
+                let y = math.evaluate(x);
+                document.getElementById("result").value = y;
+            } catch (err) {
+                document.getElementById("result").value = "Erro";
+            }
+        }
+
+        function clr() {
+            document.getElementById("result").value = "";
+        }
+    </script>
+</body>
+
+</html>
