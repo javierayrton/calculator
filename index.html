@@ -2,61 +2,68 @@
 <html>
 
 <head>
+
+    <!-- Importa a biblioteca Math.js para fazer cálculos -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
         crossorigin="anonymous"></script>
 
     <style>
+        /* Estilo geral do corpo da página */
         body {
-            background: linear-gradient(135deg, #222, #444);
-            height: 100vh;
+            background: linear-gradient(135deg, #222, #444); /* Fundo em degradê */
+            height: 100vh; /* Altura total da tela */
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Centraliza no meio da tela */
             align-items: center;
-            font-family: Arial;
+            font-family: Arial; /* Fonte do texto */
         }
 
+        /* Caixa principal da calculadora */
         #calcu {
-            background: #1e1e1e;
+            background: #1e1e1e; /* Cor da caixa */
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px #000;
+            border-radius: 15px; /* Bordas arredondadas */
+            box-shadow: 0px 0px 15px #000; /* Sombra */
         }
 
         table {
             width: 100%;
         }
 
+        /* Caixa onde aparece os números e resultados */
         input[type="text"] {
             width: 100%;
             padding: 20px;
             font-size: 28px;
             font-weight: bold;
             background: #000;
-            color: #0aff9d;
+            color: #0aff9d; /* Verde neon */
             border: 2px solid #0aff9d;
             border-radius: 10px;
-            text-align: right;
+            text-align: right; /* Texto alinhado à direita */
         }
 
+        /* Estilo dos botões */
         input[type="button"] {
             width: 100%;
             padding: 20px;
             margin-top: 10px;
             font-size: 22px;
             font-weight: bold;
-            background-color: #0aff9d;
+            background-color: #0aff9d; /* Cor padrão dos botões */
             color: black;
             border: none;
             border-radius: 10px;
-            transition: 0.2s;
+            transition: 0.2s; /* Animação ao passar o mouse */
         }
 
+        /* Efeito ao passar o mouse no botão */
         input[type="button"]:hover {
             background-color: #0cd180;
             cursor: pointer;
         }
 
-        /* Botão vermelho do C */
+        /* Botão vermelho do C (limpar) */
         .btn-clear {
             background-color: #ff4b4b !important;
             color: white;
@@ -66,7 +73,7 @@
             background-color: #cc3a3a !important;
         }
 
-        /* Botão de operações */
+        /* Botões das operações (+ - * /) */
         .op {
             background-color: #ffaa00 !important;
         }
@@ -79,12 +86,17 @@
 
 <body>
 
+    <!-- Estrutura da calculadora -->
     <table id="calcu">
         <tr>
+            <!-- Campo onde mostra o resultado -->
             <td colspan="3"><input type="text" id="result"></td>
+
+            <!-- Botão de limpar (C) -->
             <td><input type="button" value="C" class="btn-clear" onclick="clr()"></td>
         </tr>
 
+        <!-- Linha de botões 1,2,3 e divisão -->
         <tr>
             <td><input type="button" value="1" onclick="dis('1')"></td>
             <td><input type="button" value="2" onclick="dis('2')"></td>
@@ -92,6 +104,7 @@
             <td><input type="button" value="/" class="op" onclick="dis('/')"></td>
         </tr>
 
+        <!-- Linha 4,5,6 e multiplicação -->
         <tr>
             <td><input type="button" value="4" onclick="dis('4')"></td>
             <td><input type="button" value="5" onclick="dis('5')"></td>
@@ -99,6 +112,7 @@
             <td><input type="button" value="*" class="op" onclick="dis('*')"></td>
         </tr>
 
+        <!-- Linha 7,8,9 e subtração -->
         <tr>
             <td><input type="button" value="7" onclick="dis('7')"></td>
             <td><input type="button" value="8" onclick="dis('8')"></td>
@@ -106,6 +120,7 @@
             <td><input type="button" value="-" class="op" onclick="dis('-')"></td>
         </tr>
 
+        <!-- Linha 0, ponto, igual e soma -->
         <tr>
             <td><input type="button" value="0" onclick="dis('0')"></td>
             <td><input type="button" value="." onclick="dis('.')"></td>
@@ -115,24 +130,28 @@
     </table>
 
     <script>
+        /* Função que adiciona números na tela */
         function dis(val) {
             document.getElementById("result").value += val;
         }
 
+        /* Função que calcula o resultado */
         function solve() {
             try {
                 let x = document.getElementById("result").value;
-                let y = math.evaluate(x);
+                let y = math.evaluate(x); // Usa math.js para calcular
                 document.getElementById("result").value = y;
             } catch (err) {
                 document.getElementById("result").value = "Erro";
             }
         }
 
+        /* Função que limpa a tela (botão C) */
         function clr() {
             document.getElementById("result").value = "";
         }
     </script>
+
 </body>
 
 </html>
